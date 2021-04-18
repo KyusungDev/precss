@@ -1,0 +1,60 @@
+/* ==========================================================================
+  Layout: 레이아웃 클래스 (ly_)
+  - 레이아웃에 관련된 것은 레이아웃용 클래스에 일임한다.
+  ========================================================================== */
+
+/* Header */
+.ly_header {
+  padding-top: 20px;
+  border-bottom: 1px solid #ddd;
+}
+.ly_header_inner {
+  max-width: 1230px; /* 1200px + 30px(양쪽 padding) */
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Footer */
+.ly_footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #222;
+}
+.ly_footer_inner {
+  max-width: 1230px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Content */
+.ly_cont {
+  max-width: 1230px;
+  padding: 60px 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.ly_cont.ly_cont__col {
+  display: flex;
+  justify-content: space-between;
+}
+.ly_cont_main {
+  flex: 1;
+  margin-right: 3.25203%;
+}
+.ly_cont_side {
+  flex: 0 0 260px;
+}
+
+@media screen and (max-width: 768px) {
+  .ly_cont.ly_cont__col {
+    flex-direction: column;
+  }
+  .ly_cont_main {
+    margin-right: 0px;
+    margin-bottom: 60px;
+  }
+}

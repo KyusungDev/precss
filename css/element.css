@@ -1,0 +1,290 @@
+/* ==========================================================================
+  Module: 최소 모듈 클래스 (el_)
+  - 사이트 안의 어느 위치에서든 반복해서 사용되는 요소 (버튼, 라벨, 아이콘)
+  - 루트 요소와 자녀 요소를 포함해 대략 요소 수가 세 개 이내인 것
+  ========================================================================== */
+
+/* 기본 버튼 */
+.el_btn {
+  display: inline-block; /* inline-block을 사용하여 부모 단락의 text-align 값을 상속하도록하여 별도의 정렬을 위한 CSS 추가가 필요 없음 */
+  width: 300px;
+  max-width: 100%; /* 스크린 크기가 줄었을 때 버튼이 잘려보이지 않도록 가로 폭의 최댓값은 부모 박스에 따르도록 함 */
+  padding: 20px 10px; /* 긴 텍스트가 들어갈 경우를 대비하여 height가 아닌 padding으로 높이를 확보 함 (min-height는 텍스트가 위로 붙음) */
+  background-color: #e25c00;
+  border: 2px solid transparent; /* 호버를 하지 않은 상태에서 버튼 크기를 확보하기 위해 선언 */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  color: #fff;
+  font-size: 1.125rem; /* 브라우저 설정을 변경했을 때 글자 크기만 변경되도록 font에만 상대값을 사용 */
+  text-align: center;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.el_btn:focus, /* Tab키를 사용하는 경우에도 효과를 적용하기 위해 사용 */
+.el_btn:hover {
+  background-color: #fff;
+  border-color: currentColor; /* 해당 요소 자체에 color 속성값이 설정되어 있으면 속성값 사용, 그렇지 않으면 가장 가까운 부모 요소의 color 속성 값 사용 */
+  color: #e25c00;
+}
+
+.el_btn.el_btn__arrowRight {
+  position: relative; /* 아이콘 기준점 설정 */
+  padding-right: 2em; /* 아이콘과 텍스트가 겹쳐지는것을 방지하고 텍스트가 가운데 정렬이 되어 보이도록 하기 위해 지정 */
+  padding-left: 1.38em; /* 또한 폰트 크기가 변하더라도 그 변화에 맞춰 자동으로 좌우 여백을 조정하기 위해 em으로 선언 */
+}
+
+.el_btn.el_btn__arrowRight::after {
+  content: "\f061";
+  position: absolute;
+  top: 50%; /* 가운데 정렬 */
+  right: 0.83em;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  transform: translateY(-50%); /* 가운데 정렬 */
+}
+
+.el_btn.el_btn__large {
+  width: 340px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  font-size: 1.375rem;
+}
+
+/* yellow 네이밍에 대해서, 색상에 크게 의미를 두지 않고 보이는 그대로 범용성 높은 모디파이어 이름을 사용 */
+.el_btn.el_btn__yellow {
+  background-color: #f1de00;
+  color: #222;
+}
+
+.el_btn.el_btn__yellow:focus,
+.el_btn.el_btn__yellow:hover {
+  background-color: #fff;
+  border-color: #f1de00;
+}
+
+/* 
+  버튼 - 베리에이션: 모디파이어를 사용해서 덮어쓰는것과 달리 완전히 다른 클래스로 별도로 만드는것 
+  - 세 개 이상의 스타일 차이가 있으면 별도 클래스로 분리하는 것을 검토 
+*/
+.el_roundedBtn {
+  display: inline-block;
+  width: 236px;
+  max-width: 100%;
+  padding: 15px 10px;
+  background-color: #e25c00;
+  border: 2px solid transparent;
+  border-bottom-color: #d40152;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.125rem;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.el_roundedBtn:focus,
+.el_roundedBtn:hover {
+  background-color: #fff;
+  border-color: currentColor;
+  color: #e25c00;
+}
+
+.el_beforeIconBtn {
+  position: relative;
+  display: inline-block;
+  padding: 0.2em, 0.3em; /* 사용된 폰트 크기를 기준으로 하는 상대값으로 설정하여 폰트 크기가 변경되어도 여백을 유지하도록 함 */
+  border: 1px solid currentColor;
+  color: #e25c00;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.el_beforeIconBtn:focus,
+.el_beforeIconBtn:hover {
+  background-color: #e25c00;
+  color: #fff;
+}
+
+.el_beforeIconBtn::before {
+  display: inline-block;
+  margin-right: 0.5em;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+/* 다양한 아이콘이 추가될 것을 고려하여 아이콘 전용 모디파이어로 구현 */
+.el_beforeIconBtn.el_beforeIconBtn__download::before {
+  content: "\f019";
+}
+
+.el_beforeIconBtn.el_beforeIconBtn__zoom::before {
+  content: "\f00e";
+  transform: translateY(-6%);
+}
+
+/* 아이콘 */
+.el_beforeIcon {
+  display: inline-block;
+  margin-right: 0.3em;
+  color: #e25c00;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+}
+
+.el_beforeIcon.el_beforeIcon__pdf::before {
+  content: "\f1c1";
+}
+
+.el_beforeIcon.el_beforeIcon__excel::before {
+  content: "\f1c3";
+}
+
+.el_beforeIcon.el_beforeIcon__PP::before {
+  content: "\f1c4";
+}
+
+.el_beforeIcon.el_beforeIcon__checkSquare::before {
+  content: "\f14a";
+}
+
+.el_beforeIcon.el_beforeIcon__chevLeft::before {
+  content: "";
+  width: 0.375em;
+  height: 0.375em;
+  border-bottom: 0.125em solid #e25c00;
+  border-left: 0.125em solid #e25c00;
+  transform: rotate(45deg) translateY(-30%); /* 아이콘 위치 보정 */
+}
+
+/* 아이콘 - 베리에이션 */
+.el_afterIcon::after {
+  display: inline-block;
+  margin-left: 0.3em;
+  color: #e25c00;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+.el_afterIcon.el_afterIcon__chevRight::after {
+  content: "";
+  width: 0.375em;
+  height: 0.375em;
+  border-top: 0.125em solid #e25c00;
+  border-right: 0.125em solid #e25c00;
+  transform: rotate (45deg);
+}
+
+/* 라벨 */
+.el_label {
+  display: inline-block;
+  padding: 0.2em 0.3em;
+  background-color: #e25c00;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 2px solid transparent;
+}
+
+/* 라벨 - 확장 */
+.el_label.el_label__yellow {
+  background-color: #f1de00;
+  color: #000;
+}
+
+/* 보더를 호버에 붙이는 경우 라벨 크기가 늘어나기 때문에 기본형 셀렉터(a)에 스타일링을 추가 */
+a.el_label {
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+a.el_label:focus,
+a.el_label:hover {
+  background-color: #fff;
+  border-color: currentColor;
+  color: #e25c00;
+}
+
+/* 라벨 - 베리에이션 */
+.el_roundedLabel {
+  display: inline-block;
+  padding: 0.3em 0.9em;
+  background-color: #e25c00;
+  border-radius: 1em; /* em을 사용하여 위아래가 찌그러지지 않는 상태로 타원을 구현 */
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* 제목 */
+.el_lv1Heading {
+  padding: 30px 10px;
+  background-color: #e25c00;
+  color: #fff;
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+.el_lv1Heading > span {
+  position: relative;
+  display: inline-block;
+  transform: translateY(-20%); /* 텍스트가 아래로 치우쳐 보이지 않도록 보정, transform 속성 활성화를 위해 display: inline-block 적용 */
+}
+
+.el_lv1Heading > span::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%; /* 좌우 정렬 */
+  width: 80px;
+  height: 1px;
+  background-attachment: currentColor;
+  transform: translateX(-50%); /* 좌우 정렬 */
+}
+
+/* 제목 - 베리에이션 */
+.el_lv2Heading {
+  padding-bottom: 10px;
+  margin-top: 100px; /* 레이아웃에 관한 스타일링은 모듈에서는 하지 않는것이 원칙이지만, 일반적으로 제목은 여백이 통일된 경우가 많기 때문에 예외적으로 사용 함 */
+  margin-bottom: 20px;
+  border-bottom: 4px solid #e25c00;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.el_lv3Heading {
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e25c00;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.el_lv4Heading {
+  padding-bottom: 6px;
+  border-left: 2px solid #e25c00;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.el_lv5Heading {
+  color: #e25c00;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.el_lv6Heading {
+  font-size: 1.125rem;
+}
+
+/* 주석 */
+.el_caution {
+  color: #d40152;
+}
+/* 하나의 속성인데 헬퍼클래스로 만들지 않는 이유? 아래와 같은 상황이라면 독립모듈로 만드는것이 좋다.
+  - 사용하는 상황에서 명확한 의도가 있는 경우
+  - 도중에 변경하는 경우, 해당 클래스가 부여된 다른 요소에도 변경을 적용해야 하는 경우
+*/
+
+/* 주석 - 베리에이션 */
+.el_note {
+  font-size: 0.75rem;
+}
