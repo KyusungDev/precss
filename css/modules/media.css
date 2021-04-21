@@ -1,0 +1,87 @@
+.bl_media {
+  display: flex;
+  align-items: center;
+}
+
+.bl_media_imgWrapper {
+  flex: 0 1 27.58333%;
+  margin-right: 3.33333%;
+}
+
+.bl_media_imgWrapper > img {
+  width: 100%;
+}
+
+.bl_media_body {
+  flex: 1;
+}
+
+.bl_media_body > *:last-child {
+  margin-bottom: 0;
+}
+
+.bl_media_ttl {
+  margin-top: 10px; /*:TODO: layout에 위임해야 하는것 아닌가? */
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.bl_media_txt {
+  /* 스타일링 없음 */
+}
+
+@media screen and (max-width: 768px) {
+  .bl_media {
+    display: block; /*TODO: 왜 블럭 ? */
+  }
+  .bl_media_imgWrapper {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+/* 확장 - Reverse */
+.bl_media.bl_media__rev {
+  flex-direction: row-reverse;
+}
+
+.bl_media__rev .bl_media_imgWrapper {
+  margin-right: 0;
+}
+
+.bl_media__rev .bl_media_body {
+  margin-right: 3.33333%;
+  text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+  .bl_media__rev .bl_media_body {
+    margin-right: 0;
+  }
+}
+
+/* 확장 - 링크 */
+a.bl_card {
+  display: block;
+  color: currentColor;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+a.bl_card .bl_card_ttl,
+a.bl_card .bl_card_txt {
+  transition: 0.25s;
+}
+
+a.bl_card:focus,
+a.bl_card:hover {
+  opacity: 0.75;
+}
+
+a.bl_card:focus .bl_card_ttl,
+a.bl_card:focus .bl_card_txt,
+a.bl_card:hover .bl_card_ttl,
+a.bl_card:hover .bl_card_txt {
+  color: #e25c00;
+  text-decoration: underline;
+}
