@@ -1,5 +1,7 @@
 # PRECSS 설계 가이드
 
+> https://precss.io/ja/
+
 ## 규칙
 
 - 특성에 따라 CSS를 분류한다.
